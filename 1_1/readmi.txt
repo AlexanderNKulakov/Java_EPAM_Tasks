@@ -1,0 +1,3 @@
+Необходимо было прописать переменные окружения JAVA_HOME и PATH.
+Затем для компиляции пакеты использовалась команда:
+javac -sourcepath E:\Projects\Java\1_1\src -d E:\Projects\Java\1_1\bin Main.java
