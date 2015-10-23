@@ -12,6 +12,6 @@ public class Pencil extends OfficeItem {
     }
 
     public String toString() {
-        return super.toString() + " PencilRegidity: " + regidity;
+        return "Pencil:" + super.toString() + ";PencilRegidity=" + regidity;
     }
 }

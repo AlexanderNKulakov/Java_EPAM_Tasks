@@ -13,6 +13,6 @@ public class OfficeItem {
     }
 
     public String toString() {
-        return "ProducerName: " + producerName + "; Price: " + price;
+        return "ProducerName=" + producerName + ";Price=" + price;
     }
 }

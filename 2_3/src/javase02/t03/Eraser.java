@@ -12,6 +12,6 @@ public class Eraser extends OfficeItem {
     }
 
     public String toString() {
-        return super.toString() + "; EraserType: " + eraserType;
+        return "Eraser:" + super.toString() + ";EraserType=" + eraserType;
     }
 }

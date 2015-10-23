@@ -14,6 +14,6 @@ public class Paper extends OfficeItem {
     }
 
     public String toString() {
-        return super.toString() + "; PaperSize: " + papersize + "; Density: " + density;
+        return "Paper:" + super.toString() + ";PaperSize=" + papersize + ";Density=" + density;
     }
 }

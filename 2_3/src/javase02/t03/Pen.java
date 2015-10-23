@@ -12,6 +12,6 @@ public class Pen extends OfficeItem {
     }
 
     public String toString() {
-        return super.toString() + "; Color: " + color;
+        return "Pen:" + super.toString() + ";Color=" + color;
     }
 }
