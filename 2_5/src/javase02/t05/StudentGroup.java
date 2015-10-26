@@ -35,6 +35,9 @@ public class StudentGroup <T> {
         students.put(student,mark);
     }
 
+    public String getType(Student student) {
+        return students.get(student).getClass().getName();
+    }
 
     public void showStudents() {
         out.println("Group " + discipline + " includes:");

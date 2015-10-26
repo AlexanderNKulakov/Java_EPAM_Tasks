@@ -34,18 +34,20 @@ public class Main {
         StudentGroup studentGroup3 = new StudentGroup(Discipline.CHEMISTRY,false);
         listStudentGroup.add(studentGroup3);
 
-        studentGroup1.addStudent(student1, (int)3);
-        studentGroup1.addStudent(student2, (int)4);
-        studentGroup1.addStudent(student4, (int)5);
+        studentGroup1.addStudent(student1, 3.3);
+        studentGroup1.addStudent(student2, 4);
+        studentGroup1.addStudent(student4, 5);
         studentGroup1.showStudents();
+      //  out.println(studentGroup1.getType(student1));
+      //  out.println(studentGroup1.getType(student2));
         out.println();
 
 
-        studentGroup2.addStudent(student1, (double)3.4);
-        studentGroup2.addStudent(student2, (double)4.2);
-        studentGroup2.addStudent(student3, (double)4.2);
-        studentGroup2.addStudent(student5, (double)3.9);
-        studentGroup2.addStudent(student6, (double)3.9);
+        studentGroup2.addStudent(student1, 3.4);
+        studentGroup2.addStudent(student2, 4.2);
+        studentGroup2.addStudent(student3, 4.2);
+        studentGroup2.addStudent(student5, 3.9);
+        studentGroup2.addStudent(student6, 3.9);
         studentGroup2.showStudents();
         out.println();
 
