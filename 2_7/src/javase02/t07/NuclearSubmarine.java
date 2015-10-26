@@ -4,6 +4,7 @@ import static java.lang.System.out;
 /**
  * Created by akulakov on 26.10.2015.
  */
+@AnnotationSubmarine( author = "Kulakov", version = 1 )
 public class NuclearSubmarine {
     private String name;
     private Engine engine;
