@@ -11,3 +11,6 @@ src\test
 
 
 https://github.com/Vyacheslav-Lapin/JavaFundamentals
+
+
+VM option: -ea  for assert support
