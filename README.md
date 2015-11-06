@@ -36,3 +36,5 @@ SpringAOC
 
 
 book Spring 4 dlya professionalov
+
+Goole Guice
