@@ -30,3 +30,6 @@ Velocity
 TeanLeaf
 
 IoC = DI
+
+Aspectj  
+SpringAOC
