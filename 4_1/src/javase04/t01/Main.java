@@ -11,7 +11,7 @@ public class Main {
         try {
 
 
-            F
+
             FileWriter fileWriter = new FileWriter("out.txt");
 
             fileWriter.write("string1");

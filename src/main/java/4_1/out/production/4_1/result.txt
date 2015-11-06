@@ -1,0 +1,1 @@
+implements 1import 2public 6protected 2class 1package 1this 2int 4return 4
