@@ -163,15 +163,37 @@ src\package_security\SecurityFilter
 @WebFilter(urlPatterns = "catalog.jsp")  
 public class SecurityFilter implements Filter {
 
-    public void init
+    public void init(.) {}
     
     public void doFilter(ServletRequest servletRequset ...)
         //TODO proverit' login i  parol
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletRequest httpServletResponce = (HttpServletRequest) servletResponse;
         
-        filterChain.doFilter(servletRequest, servletResponse)
-
-   public void desrtoy
+        String username = httpServletRequest.getParameter("j_username");
+        String password = httpServletRequest.getParameter("j_password");
+        
+        if (username.equals("tomcat") && password.equals("tomcat")
+            filterChain.doFilter(servletRequest, servletResponse);
+        else
+         // new RequestDispatcher("").forward(httpServletRequest, httpServletResponse);
+            httpServletRequest.getRequestDispatcher("error.html").forward(httpServletRequest
+   
+   public void desttoy() {}
 
 }
+
+
+annotacii ili web.xml:
+      filter>
+        <filter-name>sec<
+        <ser
+      filter-mapping>
+        <filter-name>sec</filter-name>
+        <url-pattern>catalog.jps</url-pattern>
+
+
+
+setting projects:  Run Edit Configuration  
+        TOmcat Server
+        Build artifact  .war
