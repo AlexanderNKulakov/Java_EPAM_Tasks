@@ -60,8 +60,22 @@ web/css/index.css:
 
 web/WEB-INF
 
+
+
+
+
+
 index.jsp:
-link type   hre=index.css
+<head>
+ <link type"text/css" rel="stylesheet" href="css/index.css"/>
+</head>
+
+Zalogin
+<from action="index.jsp"
+  <input name="j_username" type="text" value="login" title="login"/>
+  <input name="j_password" type="password" value="" title="password"/>
+</form>
+
 
 <table id="Model">
   <thead>
