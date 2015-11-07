@@ -46,5 +46,35 @@ use Comcat
 
 
 Java EE -  Web App (3.1)
+delaem new folder -  (link): bin lib host-manager manager
+catalina_home delete
 ROOT mapim na papku web
 bin/startup.bat
+
+
+web/css/index.css:
+#Models >tbody>tr>td {
+  border: 1px;
+  color: blue;
+}
+
+web/WEB-INF
+
+index.jsp:
+link type   hre=index.css
+
+<table id="Model">
+  <thead>
+    <tr>
+     <th>id</th>
+     <th>nazvanie>
+     ...
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>AK-47</td>
+      ...
+      
+     
