@@ -55,9 +55,14 @@ bin/startup.bat
 
 
 web/css/index.css:
-#Models >tbody>tr>td {
+#Models >
+
+td {
+ color :  888
+}
+
+td, th {
   border: 1px;
-  color: blue;
 }
 
 web/WEB-INF
@@ -173,11 +178,11 @@ public class SecurityFilter implements Filter {
         String username = httpServletRequest.getParameter("j_username");
         String password = httpServletRequest.getParameter("j_password");
         
-        if (username.equals("tomcat") && password.equals("tomcat")
+        if (username !=null & password != null && username.equals("tomcat") && password.equals("tomcat")
             filterChain.doFilter(servletRequest, servletResponse);
         else
          // new RequestDispatcher("").forward(httpServletRequest, httpServletResponse);
-            httpServletRequest.getRequestDispatcher("error.html").forward(httpServletRequest
+            httpServletRequest.getRequestDispatcher("error.html").forward(httpServletRequest("catalog.jsp?"
    
    public void desttoy() {}
 
@@ -186,14 +191,25 @@ public class SecurityFilter implements Filter {
 
 annotacii ili web.xml:
       filter>
-        <filter-name>sec<
-        <ser
+        <filter-name>sec<filter-name>
+        <filter-class>com.epam.jf.ee....SecurityFilter
       filter-mapping>
         <filter-name>sec</filter-name>
-        <url-pattern>catalog.jps</url-pattern>
+        <url-pattern>/catalog.jsp</url-pattern>
 
 
 
 setting projects:  Run Edit Configuration  
         TOmcat Server
         Build artifact  .war
+
+
+
+Database - DAtasource 
+CREATE TABLE User (
+  ind INT AUTO_INCREMENT,
+  name VERCHAR(60),
+  login VERCHAR(20),
+  password VARCHAR(20),
+  is_txt_enable BOOL
+)
