@@ -43,3 +43,8 @@ Selenium
 
 
 use Comcat
+
+
+Java EE -  Web App (3.1)
+ROOT mapim na papku web
+bin/startup.sh
