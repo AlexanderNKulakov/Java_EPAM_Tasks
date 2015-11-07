@@ -43,6 +43,8 @@ Selenium
 
 
 use Comcat
+settings IDEA - Application Server  use new Tomcat
+zatem Modules + add
 
 
 Java EE -  Web App (3.1)
@@ -62,20 +64,13 @@ web/WEB-INF
 
 
 
-
+http://devcolibri.com/4575
 
 
 index.jsp:
 <head>
  <link type"text/css" rel="stylesheet" href="css/index.css"/>
 </head>
-
-Zalogin
-<from action="index.jsp"
-  <input name="j_username" type="text" value="login" title="login"/>
-  <input name="j_password" type="password" value="" title="password"/>
-</form>
-
 
 <table id="Model">
   <thead>
@@ -92,3 +87,91 @@ Zalogin
       ...
       
      
+
+
+login.html:
+Zalogin
+<from action="catalog.jsp"
+  <input name="j_username" type="text" value="login" title="login"/>
+  <input name="j_password" type="password" value="" title="password"/>
+  <input type="submit"/>
+</form>
+
+
+
+web.xml:
+
+ <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>secured</web-resource-name>
+            <url-pattern>catalog.jsp</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>CUSTOMER</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+ <security-role>
+        <role-name>CUSTOMER</role-name>
+  </security-role>
+    
+    
+
+<login-config>
+  <auth-method>FORM</auth-method>
+  <realm-name>EM Application</realm-name>
+  <form-login-config>
+    <form-login-page>/faces/html/common/login.jsp</form-login-page>
+    <form-error-page>/faces/html/common/login.jsp?failed=true</form-error-page>
+  </form-login-config>
+</login-config>
+
+
+
+
+tomcat-user.xml:
+<role rolename="tomcat"/>
+<role rolename="role1"/>
+<role rolemame="manager-gui"/>
+
+<group groupname="CUSTOMER roles="manager-gui,role1,tomcat"
+ desctiption="Vozmognost' prosmotra catalova>"/
+<user username="tomcat" password="tomcat" roles="tomcat,manager-gui"
+  groups="CUSTOMER">
+<user username="both"  password  roles=manager-gui,role1?
+<user username=user1?" roles="role1"/>
+
+
+error.html
+
+
+catalog.jsp
+<title>Secretnui catalog</title>
+
+
+
+
+
+
+
+
+ILI cherez filr:
+src\package_security\SecurityFilter
+
+@WebFilter(urlPatterns = "catalog.jsp")  
+public class SecurityFilter implements Filter {
+
+    public void init
+    
+    public void doFilter(ServletRequest servletRequset ...)
+        //TODO proverit' login i  parol
+        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        HttpServletRequest httpServletResponce = (HttpServletRequest) servletResponse;
+        
+        filterChain.doFilter(servletRequest, servletResponse)
+
+   public void desrtoy
+
+}
