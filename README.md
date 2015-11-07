@@ -178,7 +178,7 @@ public class SecurityFilter implements Filter {
         String username = httpServletRequest.getParameter("j_username");
         String password = httpServletRequest.getParameter("j_password");
         
-        if (username !=null & password != null && username.equals("tomcat") && password.equals("tomcat")
+        if ( UserChecker.isUserCorrect(username, password) && isUserTXTEnable(usernam) )
             filterChain.doFilter(servletRequest, servletResponse);
         else
          // new RequestDispatcher("").forward(httpServletRequest, httpServletResponse);
@@ -188,6 +188,32 @@ public class SecurityFilter implements Filter {
 
 }
 
+skachat' mysql-connector.jar   move it to lib
+
+public class UserChecjer {
+if ( username !=null & password != null ) return false;
+int result = 0;
+ static {
+   try {
+   Class.forName("com.mysql.jdbc.Driver");
+   catch ClassNotFound
+  public boolean isUserCorrect(String login, String pwd) {
+   try ( Connection = DriverManager.getConnection("idmysql...","db","user","pwd") {
+   Statement statement = connect.createStatement();
+   ResultSet resultset = statement.executeQuery(
+   "SELECT id from User WHERE login = '" + login + "' abd password = '" + pwd + "'");
+  
+   }catch (SQLExpcetion e) {
+     throw new RuntimeException;
+   }
+  return resultSet.next()
+ }
+ 
+ 
+  public boolean isUserTXTEnable(String login) {
+  }
+
+}
 
 annotacii ili web.xml:
       filter>
@@ -206,10 +232,41 @@ setting projects:  Run Edit Configuration
 
 
 Database - DAtasource 
+
+forder bd 
+ 1.sql:
 CREATE TABLE User (
   ind INT AUTO_INCREMENT,
-  name VERCHAR(60),
+  name VERCHAR(60) NOT NULL,
   login VERCHAR(20),
   password VARCHAR(20),
   is_txt_enable BOOL
-)
+  PRIMARY KEY (id)
+);
+
+ 2.sql
+CREATE TABLE gun_model (
+ id INT AUTO INCREMENT,
+ name VARCHAR(60) NOT NULL,
+ start_date TIMESTAMP NULL,
+ end_date TIMESTAMP NULL,
+ calibr VARCHAR(10) NOT NULL,
+ PRIMARY KEY (id)
+);
+
+ 3.sql
+CREATE TABLE gun (
+ id INT AUTO INCREMENT,
+ model_id INT,
+ name VARCHAR(60) NOT NULL,
+ start_date TIMESTAMP NULL,
+ end_date TIMESTAMP NULL,
+ calibr VARCHAR(10) NOT NULL,
+ PRIMARY KEY (id),
+ CONSTRAINT fk_gun_to_model FOREIGN KEY (model_id) REFERENCES (gun_model) (id)?
+);
+
+INSERT INTO User (name, login, .,..) VALUES ('vasya','Vasya','123',TRUE);
+INSERT INTO User (name, login, .,..) VALUES ('petya','Petya','568',FALSE);
+
+INSERT INTO gun_model (name, date, .,..) VALUES ('AK-47','1900-01-01 00:00:00','1940-01-01 00:00:00', TRUE)
