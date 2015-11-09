@@ -13,9 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String path = "D:\\testfolder";
-    //   String path = "D:\\testfolder\\file1.txt";
-
+        String path = "E:\\testfolder";
 
         File folder = new File(path);
 
@@ -32,43 +30,20 @@ public class Main {
             }
         }
 
-//        out.println(files.get(1));
 
 
-        Scanner scanner = new Scanner(System.in);
+        Menu menu1 = new Menu();
 
-        out.println();
-        out.println("Меню:");
-        out.println("0. Выйти");
-        for( i = 0; i < files.size(); i++ ) {
-            out.println((i+1) + ". Редактировать файл " + files.get(i));
-        }
-        out.println("Выберите пункт меню:");
+        menu1.printFileMenu(files);
 
-        int input = 0;
-        while (scanner.hasNextInt()) {
+        String fileNameChosen = menu1.chooseFile(files);
 
-            input = scanner.nextInt();
-            if (input == 0) {
+        out.println("Содержимое файла: " + fileNameChosen + ":");
+        out.println(menu1.getFileContent(fileNameChosen));
 
-//                logic.writeSerializedData(films, file3Name);
-                break;
-            }
-            if( input > 0 && input <= files.size() ) {
-                out.println(files.get(i-1));
-                break;
-            }
-        }
+        menu1.writeToFile(fileNameChosen,"new data");
+        //   out.println(files);
 
-     //   out.println(files);
 
-        String path2 = "D:\\testfolder\\file1.txt";
-        char[] buffer = new char[512];
-        try( Reader r = new FileReader(path2)) {
-            out.println("Прочитано " + r.read(buffer));
-            out.println(buffer);
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
