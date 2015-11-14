@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="javax.servlet:servlet-api:2.5" type="repository">
+    <properties maven-id="javax.servlet:servlet-api:2.5" />
+    <CLASSES>
+      <root url="jar://C:/Program Files/Apache Software Foundation/Tomcat 8.0/lib/servlet-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
