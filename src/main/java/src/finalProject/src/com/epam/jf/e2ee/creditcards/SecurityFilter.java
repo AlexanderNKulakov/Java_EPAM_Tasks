@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 public class SecurityFilter implements Filter {
 
-    private static final Logger log = Logger.getLogger(this.class);
+  //  private static final Logger log = Logger.getLogger(SecurityFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -40,6 +40,7 @@ public class SecurityFilter implements Filter {
 
             String formLogin = httpServletRequest.getParameter("j_login");
             String formPassword = httpServletRequest.getParameter("j_password");
+            System.out.println("j_login = " + formLogin);
 
             if ( UserAuth.authenticate(formLogin, formPassword) ) {
                 session.setAttribute("login", formLogin);

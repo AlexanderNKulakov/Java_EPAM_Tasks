@@ -3,6 +3,7 @@
     <properties maven-id="jstl:jstl:1.2" />
     <CLASSES>
       <root url="jar://C:/Program Files/Apache Software Foundation/Tomcat 8.0/jstl-1.2.jar!/" />
+      <root url="jar://C:/Program Files/Apache Software Foundation/Tomcat 8.0/javax.servlet.jsp-api-2.3.2-b02.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

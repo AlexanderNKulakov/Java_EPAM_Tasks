@@ -64,10 +64,9 @@
 		</form-login-config>
 	</login-config>
 
-	opera
-	FDEAE5C4781411CE981F20011E655E3E
-	F28B7B83F6778D082F84245816BE0603
 	
-	yandex
-053260C6A5F2E64A7EDA143F00A01365
-1F373D84F3789BE5BA731168A0175067
+	<attribute>
+		<name>num</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>

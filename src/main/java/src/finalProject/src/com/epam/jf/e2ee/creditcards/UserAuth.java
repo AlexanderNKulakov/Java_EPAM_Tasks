@@ -8,52 +8,38 @@ import java.sql.*;
  */
 public class UserAuth {
 
-    public static boolean authenticate(String login, String password) {
+    private static final String dbUrl = "jdbc:mysql://mysql.id1866698.myjino.ru:3306/id1866698_java";
+    private static final String dbUser = "046013672_java";
+    private static final String dbPassword = "sdtr3430";
 
+    static {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+     public static boolean authenticate(String login, String password) {
 
         if( login == null || password == null ) {
             System.out.println("auth fail, because login or password is null");
             return false;
         }
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        }catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        try ( Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword) ) {
 
-        Connection con = null;
-        ResultSet resultSet = null;
-
-        String dbUrl = "jdbc:mysql://mysql.id1866698.myjino.ru:3306/id1866698_java";
-        String dbUser = "046013672_java";
-        String dbPassword = "sdtr3430";
-
-        try {
-
-            con = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-            Statement statement = con.createStatement();
+             Statement statement = con.createStatement();
 
             String query = "SELECT id FROM users WHERE login  = '" + login + "' AND password = '" + password + "'" ;
-            resultSet = statement.executeQuery(query);
 
-            while( resultSet.next())
-                System.out.println(resultSet.getString("login") + " " + resultSet.getString("firstName"));
+            ResultSet resultSet = statement.executeQuery(query);
 
-
+        //    System.out.println("auth " + resultSet.next());
+            return resultSet.next();
 
         }catch (SQLException e) {
-            e.printStackTrace();
-        }
-  //      if ( sessionLogin.equals("user1") && password.equals("123") ) {
-        if ( login.equals("user1") && password.equals("123") ) {
-            System.out.println("auth ok");
-            return true;
-        }
-        else {
-            System.out.println("auth fail");
-            return false;
+            throw new RuntimeException();
         }
     }
 }
