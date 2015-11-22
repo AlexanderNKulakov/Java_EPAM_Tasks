@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+		 
+		 
+		 
+		 
+	<servlet>	
+		<servlet-name>Secret</servlet-name>
+		<jsp-file>/WEB-INF/secured/secret.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Secret</servlet-name>
+		<url-pattern>/secret</url-pattern>
+	</servlet-mapping> 
+		  
+		 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>secured</web-resource-name>
+            <url-pattern>/secured/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>role1</role-name>
+        </auth-constraint>
+    </security-constraint>
+ 
+    <security-role>
+        <role-name>role1</role-name>
+    </security-role>		 
+		 
+		 
+		 
+</web-app>
+
+
+
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>secured</web-resource-name>
+            <url-pattern>/secured/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>role1</role-name>
+        </auth-constraint>
+    </security-constraint>
+ 
+    <security-role>
+        <role-name>role1</role-name>
+    </security-role>		 
+		 
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.html</form-login-page>
+			<form-error-page>/error.html</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	opera
+	FDEAE5C4781411CE981F20011E655E3E
+	F28B7B83F6778D082F84245816BE0603
+	
+	yandex
+053260C6A5F2E64A7EDA143F00A01365
+1F373D84F3789BE5BA731168A0175067

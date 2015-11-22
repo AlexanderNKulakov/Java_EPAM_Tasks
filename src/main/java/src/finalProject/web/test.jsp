@@ -17,20 +17,21 @@
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Демонстрация Базовых тегов</title>
+<title>Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ Р‘Р°Р·РѕРІС‹С… С‚РµРіРѕРІ</title>
 </head>
 <body>
+JSTL
 <c:set var="name" scope="page" value="${param.name}"></c:set>
  
-<c:out value="Привет"></c:out>
+<c:out value="РџСЂРёРІРµС‚"></c:out>
 <c:choose>
   <c:when test="${!empty name}">
     <c:out value="${name}"></c:out>
   </c:when>
   <c:otherwise>
-    <c:out value="незнакомец"></c:out>
+    <c:out value="РЅРµР·РЅР°РєРѕРјРµС†"></c:out>
     <br />
-    <c:out value="У тебя есть имя? Вот несколько вариантов:" />
+    <c:out value="РЈ С‚РµР±СЏ РµСЃС‚СЊ РёРјСЏ? Р’РѕС‚ РЅРµСЃРєРѕР»СЊРєРѕ РІР°СЂРёР°РЅС‚РѕРІ:" />
     <br />
     <ul>
       <c:forEach var="nameOption" items="${requestScope.nameList}">
@@ -40,5 +41,8 @@
   </c:otherwise>
 </c:choose>
 <c:remove var="name" scope="page" />
+
+
+
 </body>
 </html>

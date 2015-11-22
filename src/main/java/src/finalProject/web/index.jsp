@@ -12,6 +12,7 @@
   </head>
   <body>
   
-  page
+  <a href="profile">Зайти в личный кабинет</a>
+  
   </body>
 </html>

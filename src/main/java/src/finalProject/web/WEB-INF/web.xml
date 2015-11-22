@@ -3,7 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-		 	 
+		 
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+	
+	
+	<filter>
+        <filter-name>sec</filter-name>
+        <filter-class>com.epam.jf.e2ee.creditcards.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sec</filter-name>
+        <url-pattern>/profile</url-pattern>
+    </filter-mapping>
+	
+	
 	<servlet>	
 		<servlet-name>Profile</servlet-name>
 		<jsp-file>/WEB-INF/profile.jsp</jsp-file>
