@@ -6,11 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 
 /**
  * Created by akulakov on 19.11.2015.
  */
 public class SecurityFilter implements Filter {
+
+    private static final Logger log = Logger.getLogger(this.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -30,8 +33,8 @@ public class SecurityFilter implements Filter {
 
         if( UserAuth.authenticate(sessionLogin, sessionPassword) ) {
 
+            System.out.println("sessionLogin and sessionPassword are true");
             filterChain.doFilter(servletRequest, servletResponse);
-
         }
         else {
 
@@ -41,7 +44,7 @@ public class SecurityFilter implements Filter {
             if ( UserAuth.authenticate(formLogin, formPassword) ) {
                 session.setAttribute("login", formLogin);
                 session.setAttribute("password", formPassword);
-                System.out.println("session login and password is set");
+                System.out.println("session login and password have been set");
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 System.out.println("forward to login.html");
