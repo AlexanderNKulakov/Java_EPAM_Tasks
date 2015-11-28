@@ -30,15 +30,24 @@
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
 	
+	
 	<servlet>	
-		<servlet-name>Controller</servlet-name>
-		<servlet-class>com.epam.jf.e2ee.creditcards.Controller</servlet-class>
+		<servlet-name>Registration</servlet-name>
+		<servlet-class>com.epam.jf.e2ee.creditcards.Registration</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Controller</servlet-name>
-		<url-pattern>/controller</url-pattern>
+		<servlet-name>Registration</servlet-name>
+		<url-pattern>/registration</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>	
+		<servlet-name>LogOut</servlet-name>
+		<servlet-class>com.epam.jf.e2ee.creditcards.LogOut</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogOut</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
 	
 	<jsp-config>
 		<taglib>

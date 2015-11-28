@@ -8,38 +8,30 @@ import java.sql.*;
  */
 public class UserAuth {
 
-    private static final String dbUrl = "jdbc:mysql://mysql.id1866698.myjino.ru:3306/id1866698_java";
-    private static final String dbUser = "046013672_java";
-    private static final String dbPassword = "sdtr3430";
-
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        }catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-     public static boolean authenticate(String login, String password) {
+      public static boolean authenticate(String login, String password) {
 
         if( login == null || password == null ) {
             System.out.println("auth fail, because login or password is null");
             return false;
         }
 
-        try ( Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPassword) ) {
+          String query = "SELECT id FROM users WHERE login  = ? AND password = ?";
 
-             Statement statement = con.createStatement();
+          try ( Connection connection = DBConnection.getConnection() ) {
 
-            String query = "SELECT id FROM users WHERE login  = '" + login + "' AND password = '" + password + "'" ;
 
-            ResultSet resultSet = statement.executeQuery(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,login);
+            preparedStatement.setString(2 ,password);
 
-        //    System.out.println("auth " + resultSet.next());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+         //   System.out.println("auth " + resultSet.next());
+         //     System.out.println("auth " + resultSet.next());
             return resultSet.next();
 
         }catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("SQLException in UserAuth.authenticate()");
         }
     }
 }

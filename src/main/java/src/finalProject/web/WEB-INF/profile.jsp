@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="mytag"%>
+<%@ taglib uri="/WEB-INF/tld/taglib.tld" prefix="mytags"%>
 <html>
   <head>
     <title>Личный кабинет пользователя</title>
@@ -8,6 +8,25 @@
   </head>
   <body>
   
+	Вы вошли как <mytags:getlogintag/>
+	
+	<a href="logout">Выйти</a>
+  
+	<br>
+	    
+     
+	<c:set var="login2" value="${pageContext.session}" scope="session" />   
+	<c:out value="${sessionScope.login2}" />
+  
+   
+	<jsp:useBean id="cards" class="com.epam.jf.e2ee.creditcards.CardsBean" />
+	
+	<jsp:setProperty name="cards" property="login" value="${login2}" /> 
+	
+	<jsp:getProperty name="cards" property="login" />  
+    <c:out value="${cards.login}" />
+   
+    <c:set var="carditems" value="${cards.tableLines}" />
 	Список ваших кредитных карт:
 	<table class="Cards">
        <thead>
@@ -18,37 +37,36 @@
 			<th>Дата окончания действия</th>
         </tr>
        </thead>
-       <tbody>
-        <tr>
-            <td>1123 2323 4555 6667</td>
-            <td>200 руб</td>
-            <td>1454504504054054050</td>
-            <td>2017-10-05</td>
-        </tr>
-       </tbody>
+	       
+	   <tbody>
+		<c:forEach items="${carditems}" var="carditem">
+		<tr> 
+			<c:forEach items="${carditem}" var="cardrow">
+			<td> 
+				<c:out value="${cardrow}"/>
+			</td>
+			</c:forEach>
+		</tr>
+		</c:forEach>
+		   </tbody>
    </table>
    
    
-   <mytag:showCards/>
-   
-   <%
-		out.println("jsp out.println");
-   %>
-   
-    <c:set var="salary" scope="session" value="${2000*2}" />
-	<c:set var="salary" scope="session" value="${salary+89}" />
-	<c:out value="${salary}" />
-   
-   
-   <nav>
-    <ul>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Portfolio</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-</nav>
-   
+   <br><br>  
+	Список ваших кредитных карт:
+   <table class="Cards">
+         <thead>
+        <tr>
+            <th width="200">Номер карты</th>
+			<th>Дата окончания действия карты</th>
+            <th width="200">Счет карты</th>
+            <th>Баланс счета</th>
+			<th>Блокирован ли счет</th>
+	
+        </tr>
+       </thead>
+	   
+		<mytags:cardlisttag/>
  
   </body>
 </html>

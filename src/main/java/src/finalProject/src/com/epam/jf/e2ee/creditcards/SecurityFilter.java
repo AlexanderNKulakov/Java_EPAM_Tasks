@@ -21,7 +21,9 @@ public class SecurityFilter implements Filter {
 
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+
+            throws IOException, ServletException {
 
         // TODO: проверить логин и пароль
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
@@ -49,6 +51,8 @@ public class SecurityFilter implements Filter {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 System.out.println("forward to login.html");
+           //     PrintWriter out = httpServletResponse.getWriter();
+          //      out.println("Неверный логин или пароль");
                 httpServletRequest.getRequestDispatcher("login.html").forward(httpServletRequest, httpServletResponse);
             }
         }
