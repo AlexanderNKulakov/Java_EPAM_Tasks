@@ -35,10 +35,13 @@ public class BillListTag extends TagSupport {
             while( resultSet.next() ) {
 
                 out.write("<tr>");
+
                 out.write("<td>" + resultSet.getString("billNumber") + "</td>");
                 out.write("<td>" + resultSet.getString("balance") + "</td>");
 
                 if( resultSet.getBoolean("isLock") ) {
+                    out.write("<td>" + "Блокирован" + "</td>");
+                    out.write("<td>" + "Блокирован" + "</td>");
                     out.write("<td>" + "Блокирован" + "</td>");
                 }
                 else {
@@ -47,8 +50,26 @@ public class BillListTag extends TagSupport {
                     out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
                     out.write("<input type=\"submit\" value=\"Заблокировать\"/>");
                     out.write("</form>");
-                }
+                    out.write("</td>");
 
+                    out.write("<td>");
+                    out.write("<form action=\"changebalance\" method=\"post\">");
+                    out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
+                    out.write("<input name=\"j_billoperationtype\" type=\"hidden\" value=\"deposit\"/>");
+                    out.write("<input name=\"j_amount\" type=\"input\" value=\"1000\"/>");
+                    out.write("<input type=\"submit\" value=\"Пополнить\"/>");
+                    out.write("</form>");
+                    out.write("</td>");
+
+                    out.write("<td>");
+                    out.write("<form action=\"changebalance\" method=\"post\">");
+                    out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
+                    out.write("<input name=\"j_billoperationtype\" type=\"hidden\" value=\"withdraw\"/>");
+                    out.write("<input name=\"j_amount\" type=\"input\" value=\"1000\"/>");
+                    out.write("<input type=\"submit\" value=\"Оплатить\"/>");
+                    out.write("</form>");
+                    out.write("</td>");
+            }
                 out.write("</tr>");
             }
         }catch(IOException e){

@@ -22,7 +22,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 /**
  * Created by akulakov on 22.11.2015.
  */
-public class CardListTableTag extends TagSupport {
+public class CardListTag extends TagSupport {
 
 
     @Override

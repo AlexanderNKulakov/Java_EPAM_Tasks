@@ -15,7 +15,7 @@
 
 <tag>
 	<name>cardlisttag</name>
-	<tag-class>com.epam.jf.e2ee.creditcards.CardListTableTag</tag-class>
+	<tag-class>com.epam.jf.e2ee.creditcards.CardListTag</tag-class>
 	<body-content>empty</body-content>
 </tag>
 

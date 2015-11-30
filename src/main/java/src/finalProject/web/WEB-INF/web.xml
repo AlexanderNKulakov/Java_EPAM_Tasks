@@ -58,6 +58,15 @@
 		<url-pattern>/lockBill</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>	
+		<servlet-name>ChangeBalance</servlet-name>
+		<servlet-class>com.epam.jf.e2ee.creditcards.ChangeBalanceController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChangeBalance</servlet-name>
+		<url-pattern>/changebalance</url-pattern>
+	</servlet-mapping>
+	
 	<jsp-config>
 		<taglib>
 			<taglib-uri>
