@@ -32,10 +32,6 @@ public class CardListTableTag extends TagSupport {
   //  @Override
     public int doStartTag() throws JspException {
 
-    //    int size = new Integer(set.getSize());
-
-    //    String str = "Size = <b>(" + size + ")</b>";
-
         try{
 
             JspWriter out = pageContext.getOut();
@@ -43,21 +39,35 @@ public class CardListTableTag extends TagSupport {
        //     out.write(str);
 
             String login =  (String)pageContext.getSession().getAttribute("login");
-       //     String query = "SELECT cardNumber,expDate,billNumber FROM cards INNER JOIN bills using(bill_id) WHERE user_id  = ?";
-            String query = "SELECT cardNumber,billNumber,balance,expDate FROM cards INNER JOIN bills using(id) WHERE user_id  = ?";
+
+            String query = "SELECT cardNumber,expDate,billNumber,balance,isLock " +
+                    "FROM cards, bills WHERE cards.bill_id = bills.id " +
+                    "AND user_id = (SELECT id FROM users WHERE login = ?)";
 
             try ( Connection connection = DBConnection.getConnection() ) {
 
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1,"1");
+                preparedStatement.setString(1,login);
                 ResultSet resultSet = preparedStatement.executeQuery();
              //   System.out.println(resultSet.next());
                 while( resultSet.next() ) {
                     out.write("<tr>");
                     out.write("<td>" + resultSet.getString("cardNumber") + "</td>");
-                    out.write("<td>" + resultSet.getString("billNumber") + "</td>");
-                    out.write("<td>" + resultSet.getString("balance") + "</td>");
                     out.write("<td>" + resultSet.getString("expDate") + "</td>");
+                    resultSet.getString("billNumber");                    out.write("<td>" + resultSet.getString("billNumber") + "</td>");
+                    out.write("<td>" + resultSet.getString("balance") + "</td>");
+                    if( resultSet.getBoolean("isLock") ) {
+                        out.write("<td>" + "Блокирован" + "</td>");
+                    }
+                    else {
+
+                        out.write("<td>");
+                        out.write("<form action=\"lockBill\" method=\"post\">");
+                        out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
+                        out.write("<input type=\"submit\" value=\"Заблокировать\"/>");
+                        out.write("</form>");
+
+                    }
                     out.write("</tr>");
                 }
             }catch (SQLException e) {

@@ -46,8 +46,7 @@ public class SecurityFilter implements Filter {
 
             if ( UserAuth.authenticate(formLogin, formPassword) ) {
                 session.setAttribute("login", formLogin);
-                session.setAttribute("password", formPassword);
-                System.out.println("session login and password have been set");
+                System.out.println("session login has been set");
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 System.out.println("forward to login.html");

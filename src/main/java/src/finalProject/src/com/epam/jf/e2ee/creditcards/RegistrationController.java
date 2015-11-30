@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class Registration extends HttpServlet {
+public class RegistrationController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -89,7 +89,7 @@ public class Registration extends HttpServlet {
             System.out.println("countRow = " + countRow);
 
         }catch (SQLException e) {
-             throw new RuntimeException("SQLException in Registration");
+             throw new RuntimeException("SQLException in RegistrationController");
         }
 
         System.out.println("registration after expectuion!!!");

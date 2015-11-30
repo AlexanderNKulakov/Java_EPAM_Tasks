@@ -15,12 +15,12 @@ public class GetLoginTag extends TagSupport {
 
         try {
 
-            JspWriter out = pageContext.getOut();
+           JspWriter out = pageContext.getOut();
            out.write((String)pageContext.getSession().getAttribute("login"));
          //  out.write("test");
 
         }catch(IOException e){
-         //   throw new JspException(e.getMessage());
+            throw new JspException(e.getMessage());
         }
 
         return SKIP_BODY;

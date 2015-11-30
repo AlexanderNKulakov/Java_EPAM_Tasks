@@ -33,7 +33,7 @@
 	
 	<servlet>	
 		<servlet-name>Registration</servlet-name>
-		<servlet-class>com.epam.jf.e2ee.creditcards.Registration</servlet-class>
+		<servlet-class>com.epam.jf.e2ee.creditcards.RegistrationController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Registration</servlet-name>
@@ -42,11 +42,20 @@
 	
 		<servlet>	
 		<servlet-name>LogOut</servlet-name>
-		<servlet-class>com.epam.jf.e2ee.creditcards.LogOut</servlet-class>
+		<servlet-class>com.epam.jf.e2ee.creditcards.LogOutController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LogOut</servlet-name>
 		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>	
+		<servlet-name>LockBill</servlet-name>
+		<servlet-class>com.epam.jf.e2ee.creditcards.LockBillController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LockBill</servlet-name>
+		<url-pattern>/lockBill</url-pattern>
 	</servlet-mapping>
 	
 	<jsp-config>
