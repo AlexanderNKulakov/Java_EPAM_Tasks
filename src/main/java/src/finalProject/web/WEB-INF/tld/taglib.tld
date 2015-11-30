@@ -19,4 +19,10 @@
 	<body-content>empty</body-content>
 </tag>
 
+<tag>
+	<name>billlisttag</name>
+	<tag-class>com.epam.jf.e2ee.creditcards.BillListTag</tag-class>
+	<body-content>empty</body-content>
+</tag>
+
 </taglib>

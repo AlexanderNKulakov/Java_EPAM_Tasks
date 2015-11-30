@@ -35,9 +35,8 @@ public class LockBillController extends HttpServlet {
             throws ServletException, IOException {
 
         String formBillId = request.getParameter("j_bill_id");
-        System.out.println("formBillId = " + formBillId);
 
-        String query = "UPDATE bills set isLock = '1' WHERE id = ?";
+        String query = "UPDATE bills set isLock = '1' WHERE billNumber = ?";
 
         try ( Connection con = DBConnection.getConnection() ) {
 
@@ -51,6 +50,7 @@ public class LockBillController extends HttpServlet {
         throw new RuntimeException("SQLException in RegistrationController");
         }
 
+     //   System.out.println("LockBillController : forwarding to profile");
         request.getRequestDispatcher("profile").forward(request, response);
 
     }

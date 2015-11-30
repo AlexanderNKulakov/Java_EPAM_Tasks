@@ -9,38 +9,3 @@
 .Cards th, td {
     border: 1px solid #000;
 }
-
-nav {
-  display: block;
-  position: absolute;
- // background: yellow;
-  width: 800px;
-  top: 400px;
-}
-
-ul {
-  width: 960px;
-  margin: 0 auto;
-  padding-left: 0;
-  list-style: none;
-  overflow: hidden;
-   background: orange;
-}
-li {
-  float: left;
-  width: 25%;
-}
-a {
-  text-decoration: none;
-  text-align: center;
- // display: block;
-  color: #868686;
-  padding: 0.5em 0;
-  font-size: 2em;
-  font-weight: bold;
-  transition: 0.5s ease-in-out;
-}
-a:hover {
-  color: #f70211;
-   background: blue;
-}

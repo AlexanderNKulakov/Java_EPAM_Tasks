@@ -12,62 +12,43 @@
 	
 	<a href="logout">Выйти</a>
   
-	<br>
-	    
-     
-	<c:set var="login2" value="${pageContext.session}" scope="session" />   
-	<c:out value="${sessionScope.login2}" />
-  
-   
-	<jsp:useBean id="cards" class="com.epam.jf.e2ee.creditcards.CardsBean" />
-	
-	<jsp:setProperty name="cards" property="login" value="${login2}" /> 
-	
-	<jsp:getProperty name="cards" property="login" />  
-    <c:out value="${cards.login}" />
-   
-    <c:set var="carditems" value="${cards.tableLines}" />
-	Список ваших кредитных карт:
-	<table class="Cards">
-       <thead>
-        <tr>
-            <th width="200">Номер карты</th>
-            <th>Баланс</th>
-            <th width="200">Счет карты</th>
-			<th>Дата окончания действия</th>
-        </tr>
-       </thead>
-	       
-	   <tbody>
-		<c:forEach items="${carditems}" var="carditem">
-		<tr> 
-			<c:forEach items="${carditem}" var="cardrow">
-			<td> 
-				<c:out value="${cardrow}"/>
-			</td>
-			</c:forEach>
-		</tr>
-		</c:forEach>
-		   </tbody>
-   </table>
-   
-   
+	  
    <br><br>  
 	Список ваших кредитных карт:
    <table class="Cards">
-         <thead>
-        <tr>
-            <th width="200">Номер карты</th>
-			<th>Дата окончания действия карты</th>
-            <th width="200">Счет карты</th>
-            <th>Баланс счета</th>
-			<th>Блокировка</th>
-			<th>Операции</th>
-	    </tr>
-       </thead>
-	   
-		<mytags:cardlisttag/>
- 
+        <thead>
+			<tr>
+				<th width="200">Номер карты</th>
+				<th>Дата окончания действия карты</th>
+				<th width="200">Счет карты</th>
+				<th>Баланс счета</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<mytags:cardlisttag/>
+		</tbody>
+	</table>
+	
+	<br><br>  
+	Ваши счета:
+   <table class="Cards">
+        <thead>
+			<tr>
+				<th width="200">Номер счета</th>
+				<th>Баланс счета</th>
+				<th>Блокировка</th>
+				<th>Пополнить</th>
+				<th>Сделать платеж</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<mytags:billlisttag/>
+		</tbody>
+	</table>
+	
+  
   </body>
 </html>
 
