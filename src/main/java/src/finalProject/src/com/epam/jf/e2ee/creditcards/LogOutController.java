@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,15 +36,15 @@ public class LogOutController extends HttpServlet {
 
             throws  ServletException, IOException {
 
-        request.logout();
+      //  HttpSession session = request.getSession(true);
+     //   response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("session is closed");
+        System.out.println("session is closed");
+        request.getSession().invalidate();
 
-    //    PrintWriter out = response.getWriter();
-   //     out.println("<html><head>");
-
-    //    out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
-     //   out.write("Вы вышли");
-
-   //     request.getRequestDispatcher("login.html").forward(request, response);
+    //    request.getRequestDispatcher("profile").forward(request, response);
+        response.sendRedirect("login.html");
 
     }
 }

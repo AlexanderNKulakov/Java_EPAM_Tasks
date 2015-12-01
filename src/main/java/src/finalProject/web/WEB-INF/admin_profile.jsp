@@ -8,13 +8,15 @@
   </head>
   <body>
   
+	Админка
+	<br><br>
 	Вы вошли как <mytags:getlogintag/>, 
 	
 	<a href="logout">Выйти</a>
   
-	<br>
+	<br><br>
 	
-	Список пользователей:
+	Список счетов пользователей:
 	   <table class="Cards">
         <thead>
 			<tr>

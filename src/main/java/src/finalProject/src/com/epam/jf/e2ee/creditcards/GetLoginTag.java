@@ -15,9 +15,13 @@ public class GetLoginTag extends TagSupport {
 
         try {
 
-           JspWriter out = pageContext.getOut();
-           out.write((String)pageContext.getSession().getAttribute("login"));
-         //  out.write("test");
+            JspWriter out = pageContext.getOut();
+
+            String login = (String)pageContext.getSession().getAttribute("login");
+
+            if( login == null ) throw new RuntimeException("GetLoginTag: login is null");
+
+            out.write(login);
 
         }catch(IOException e){
             throw new JspException(e.getMessage());

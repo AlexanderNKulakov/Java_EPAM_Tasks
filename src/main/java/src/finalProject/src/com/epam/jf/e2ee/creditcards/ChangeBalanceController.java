@@ -58,7 +58,7 @@ public class ChangeBalanceController  extends HttpServlet {
             preparedStatement.setInt(1,Integer.parseInt(formAmount));
             preparedStatement.setString(2,formBillId);
             int countRow = preparedStatement.executeUpdate();
-            System.out.println("countRow = " + countRow);
+    //        System.out.println("countRow = " + countRow);
 
         }catch (SQLException e) {
             throw new RuntimeException("SQLException in ChangeBalanceController");

@@ -10,19 +10,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by akulakov on 30.11.2015.
+ * Created by akulakov on 01.12.2015.
  */
-public class BillListTag extends TagSupport {
+public class BillListAdminTag extends TagSupport {
 
     @Override
     public int doStartTag() throws JspException {
 
 
         String query = "SELECT billNumber,balance,isLock " +
-                "FROM bills WHERE user_id = (SELECT id FROM users WHERE login = ?)";
+                "FROM bills,users WHERE user_id = (SELECT id FROM users WHERE login = ?)";
 
-        String login =  (String)pageContext.getSession().getAttribute("login");
-
+        
         try ( Connection connection = DBConnection.getConnection() ) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -74,7 +73,7 @@ public class BillListTag extends TagSupport {
                 out.write("</tr>");
             }
         }catch(IOException e){
-                throw new JspException(e.getMessage());
+            throw new JspException(e.getMessage());
         }catch (SQLException e) {
             throw new RuntimeException("SQLException in CardListTableTag");
         }

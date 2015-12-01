@@ -8,7 +8,7 @@
   </head>
   <body>
   
-	Вы вошли как <mytags:getlogintag/>
+	Вы вошли как <mytags:getlogintag/>,
 	
 	<a href="logout">Выйти</a>
   
