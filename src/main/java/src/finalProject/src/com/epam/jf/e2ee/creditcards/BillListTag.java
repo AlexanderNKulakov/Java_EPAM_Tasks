@@ -48,6 +48,7 @@ public class BillListTag extends TagSupport {
                     out.write("<td>");
                     out.write("<form action=\"lockBill\" method=\"post\">");
                     out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
+                    out.write("<input name=\"j_billoperationtype\" type=\"hidden\" value=\"lock\"/>");
                     out.write("<input type=\"submit\" value=\"Заблокировать\"/>");
                     out.write("</form>");
                     out.write("</td>");

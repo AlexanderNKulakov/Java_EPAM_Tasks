@@ -4,10 +4,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Created by akulakov on 01.12.2015.
@@ -18,15 +15,14 @@ public class BillListAdminTag extends TagSupport {
     public int doStartTag() throws JspException {
 
 
-        String query = "SELECT billNumber,balance,isLock " +
-                "FROM bills,users WHERE user_id = (SELECT id FROM users WHERE login = ?)";
+        String query = "SELECT billNumber,balance,isLock,userName " +
+                "FROM bills,users WHERE user_id = users.id";
 
-        
+
         try ( Connection connection = DBConnection.getConnection() ) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1,login);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
             //   System.out.println(resultSet.next());
 
             JspWriter out = pageContext.getOut();
@@ -37,35 +33,28 @@ public class BillListAdminTag extends TagSupport {
 
                 out.write("<td>" + resultSet.getString("billNumber") + "</td>");
                 out.write("<td>" + resultSet.getString("balance") + "</td>");
+                out.write("<td>" + resultSet.getString("userName") + "</td>");
 
                 if( resultSet.getBoolean("isLock") ) {
-                    out.write("<td>" + "Блокирован" + "</td>");
-                    out.write("<td>" + "Блокирован" + "</td>");
-                    out.write("<td>" + "Блокирован" + "</td>");
-                }
-                else {
+                    out.write("<td>Блокирован</td>");
+
                     out.write("<td>");
                     out.write("<form action=\"lockBill\" method=\"post\">");
                     out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
+                    out.write("<input name=\"j_billoperationtype\" type=\"hidden\" value=\"unlock\"/>");
+                    out.write("<input type=\"submit\" value=\"Раблокировать\"/>");
+                    out.write("</form>");
+                    out.write("</td>");
+                }
+                else {
+
+                    out.write("<td>Действующий</td>");
+
+                    out.write("<td>");
+                    out.write("<form action=\"lockBill\" method=\"post\">");
+                    out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
+                    out.write("<input name=\"j_billoperationtype\" type=\"hidden\" value=\"lock\"/>");
                     out.write("<input type=\"submit\" value=\"Заблокировать\"/>");
-                    out.write("</form>");
-                    out.write("</td>");
-
-                    out.write("<td>");
-                    out.write("<form action=\"changebalance\" method=\"post\">");
-                    out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
-                    out.write("<input name=\"j_billoperationtype\" type=\"hidden\" value=\"deposit\"/>");
-                    out.write("<input name=\"j_amount\" type=\"input\" value=\"1000\"/>");
-                    out.write("<input type=\"submit\" value=\"Пополнить\"/>");
-                    out.write("</form>");
-                    out.write("</td>");
-
-                    out.write("<td>");
-                    out.write("<form action=\"changebalance\" method=\"post\">");
-                    out.write("<input name=\"j_bill_id\" type=\"hidden\" value=\"" + resultSet.getString("billNumber") + "\"/>");
-                    out.write("<input name=\"j_billoperationtype\" type=\"hidden\" value=\"withdraw\"/>");
-                    out.write("<input name=\"j_amount\" type=\"input\" value=\"1000\"/>");
-                    out.write("<input type=\"submit\" value=\"Оплатить\"/>");
                     out.write("</form>");
                     out.write("</td>");
                 }

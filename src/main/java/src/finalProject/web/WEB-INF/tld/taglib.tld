@@ -25,4 +25,10 @@
 	<body-content>empty</body-content>
 </tag>
 
+<tag>
+	<name>billlistadmintag</name>
+	<tag-class>com.epam.jf.e2ee.creditcards.BillListAdminTag</tag-class>
+	<body-content>empty</body-content>
+</tag>
+
 </taglib>

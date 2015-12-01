@@ -22,14 +22,14 @@
 			<tr>
 				<th width="200">Номер счета</th>
 				<th>Баланс счета</th>
-				<th>Блокировка</th>
-				<th>Пополнить</th>
-				<th>Сделать платеж</th>
+				<th>Имя пользователя</th>
+				<th>Статус счета</th>
+				<th>Заблокировать/Разблокировать</th>
 			</tr>
 		</thead>
 		
 		<tbody>
-			<mytags:billlisttag/>
+			<mytags:billlistadmintag/>
 		</tbody>
 	</table>
    

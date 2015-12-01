@@ -36,12 +36,8 @@ public class LogOutController extends HttpServlet {
 
             throws  ServletException, IOException {
 
-      //  HttpSession session = request.getSession(true);
-     //   response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("session is closed");
-        System.out.println("session is closed");
         request.getSession().invalidate();
+        System.out.println("session is closed");
 
     //    request.getRequestDispatcher("profile").forward(request, response);
         response.sendRedirect("login.html");

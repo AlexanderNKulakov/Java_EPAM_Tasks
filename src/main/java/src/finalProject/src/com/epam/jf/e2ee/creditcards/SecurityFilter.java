@@ -73,8 +73,7 @@ public class SecurityFilter implements Filter {
                 }
             }
             else {
-                httpServletRequest.getSession().invalidate();  // если во время сессии был изменен пароль парользователя
-           //     httpServletRequest.getRequestDispatcher("login.html").forward(httpServletRequest, httpServletResponse);
+                httpServletRequest.getSession().invalidate();  // если во время сессии был изменен пароль
                 httpServletResponse.sendRedirect("login.html");
             }
         }catch (SQLException e) {

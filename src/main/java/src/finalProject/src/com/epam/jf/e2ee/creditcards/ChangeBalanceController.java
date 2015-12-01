@@ -66,6 +66,7 @@ public class ChangeBalanceController  extends HttpServlet {
 
         //   System.out.println("ChangeBalanceController : forwarding to profile");
         request.getRequestDispatcher("profile").forward(request, response);
+   //     response.sendRedirect("profile");
 
     }
 }

@@ -35,8 +35,22 @@ public class LockBillController extends HttpServlet {
             throws ServletException, IOException {
 
         String formBillId = request.getParameter("j_bill_id");
+        String formBillOperationType = request.getParameter("j_billoperationtype");
 
-        String query = "UPDATE bills set isLock = '1' WHERE billNumber = ?";
+        String query;
+
+        if( formBillOperationType.equals("lock")) {
+
+            query = "UPDATE bills set isLock = '1' WHERE billNumber = ?";
+        }
+        else
+            if( formBillOperationType.equals("unlock")) {
+
+                query = "UPDATE bills set isLock = '0' WHERE billNumber = ?";
+            }
+            else {
+                throw new RuntimeException("Unknown BillOperationType");
+            }
 
         try ( Connection con = DBConnection.getConnection() ) {
 
@@ -47,11 +61,12 @@ public class LockBillController extends HttpServlet {
             System.out.println("countRow = " + countRow);
 
         }catch (SQLException e) {
-        throw new RuntimeException("SQLException in RegistrationController");
+        throw new RuntimeException("SQLException in LockBillController");
         }
 
      //   System.out.println("LockBillController : forwarding to profile");
-        request.getRequestDispatcher("profile").forward(request, response);
+     //   request.getRequestDispatcher("profile").forward(request, response);
+        response.sendRedirect("profile");
 
     }
 }
