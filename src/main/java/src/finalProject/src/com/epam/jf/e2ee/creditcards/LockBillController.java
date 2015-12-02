@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * It's used to lock and unlock the user's bill from the user's or admin's pages
  * Created by akulakov on 29.11.2015.
  */
 public class LockBillController extends HttpServlet {
@@ -60,7 +61,7 @@ public class LockBillController extends HttpServlet {
 
             preparedStatement.setString(1,formBillId);
             int countRow = preparedStatement.executeUpdate();
-            System.out.println("countRow = " + countRow);
+            System.out.println("LockBillController: countRow = " + countRow);
 
         }catch (SQLException e) {
             request.getRequestDispatcher("error.html").forward(request, response);

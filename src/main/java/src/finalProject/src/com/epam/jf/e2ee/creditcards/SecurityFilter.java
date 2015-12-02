@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 /**
+ * It's used to authenticate the user, set session attributes and forward the user to profile.jsp or admin_profile.jsp
  * Created by akulakov on 19.11.2015.
  */
 public class SecurityFilter implements Filter {
@@ -39,7 +39,6 @@ public class SecurityFilter implements Filter {
         String login = null;
         String password = null;
 
-
       //  System.out.println(httpServletRequest.getParameter("j_login"));
 
         if( session.getAttribute("login") == null) {
@@ -62,18 +61,17 @@ public class SecurityFilter implements Filter {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if( resultSet.next() ) {   // если пароль верный
+            if( resultSet.next() ) {
                 session.setAttribute("login", login);
                 session.setAttribute("password", password);
 
-                if( resultSet.getBoolean("isAdmin") ) { // если админ, то пропускаем и перенаправляем
+                // если админ, то пропускаем и перенаправляем
+                if( resultSet.getBoolean("isAdmin") ) {
                     filterChain.doFilter(servletRequest, servletResponse);
                     httpServletRequest.getRequestDispatcher("admin_profile").forward(httpServletRequest, httpServletResponse);
-               //     System.out.println("SecurityFilter: admin");
                 }
                 else {
                     filterChain.doFilter(servletRequest, servletResponse);
-               //     System.out.println("SecurityFilter: not admin");
                 }
             }
             else {

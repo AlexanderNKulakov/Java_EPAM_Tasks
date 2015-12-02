@@ -1,10 +1,10 @@
 /**
+ * It's used to register a new user in database
  * Created by akulakov on 13.11.2015.
  */
 package com.epam.jf.e2ee.creditcards;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.*;
 
 import javax.servlet.ServletException;

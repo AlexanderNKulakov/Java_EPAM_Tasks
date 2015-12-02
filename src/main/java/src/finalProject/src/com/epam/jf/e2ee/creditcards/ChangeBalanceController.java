@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * It's used to deposit and withdraw the balance of the user's bill
  * Created by akulakov on 30.11.2015.
  */
 public class ChangeBalanceController  extends HttpServlet {
@@ -60,7 +61,7 @@ public class ChangeBalanceController  extends HttpServlet {
             preparedStatement.setInt(1,Integer.parseInt(formAmount));
             preparedStatement.setString(2,formBillId);
             int countRow = preparedStatement.executeUpdate();
-            System.out.println("countRow = " + countRow);
+            System.out.println("ChangeBalanceController: countRow = " + countRow);
 
         }catch (SQLException e) {
             request.getRequestDispatcher("error.html").forward(request, response);
