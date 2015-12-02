@@ -43,37 +43,11 @@ public class RegistrationController extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
 
-            throws  ServletException {
-
-        System.out.println("registration!!!");
-
-        response.setContentType("text/html");
-
-        try {
-            PrintWriter out = response.getWriter();
-            out.println("<html><head>");
-
-            out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
-
-            out.println("<title>Title</title>");
-
-            out.println("</head><body>");
-
-            out.println("<h1> Hello, world!!! </h1>");
-
-            out.println("</body></html>");
-        }
-        catch (IOException e) {
-            throw new RuntimeException();
-        }
+            throws  ServletException, IOException {
 
         String formRegLogin = request.getParameter("j_login");
         String formRegUsername = request.getParameter("j_username");
         String formRegPassword = request.getParameter("j_password");
-
-        System.out.println("formRegLogin " + formRegLogin);
-        System.out.println("formRegUsername " + formRegUsername);
-        System.out.println("formRegPassword " + formRegPassword);
 
         try ( Connection con = DBConnection.getConnection() ) {
 
@@ -86,19 +60,16 @@ public class RegistrationController extends HttpServlet {
             preparedStatement.setString(3,formRegPassword);
 
             int countRow = preparedStatement.executeUpdate();
-            System.out.println("countRow = " + countRow);
+
+            request.getSession(true).setAttribute("login", formRegLogin);
+            request.getSession(true).setAttribute("password", formRegPassword);
+            request.getRequestDispatcher("profile").forward(request, response);
+      //      response.sendRedirect("profile");
 
         }catch (SQLException e) {
-             throw new RuntimeException("SQLException in RegistrationController");
+            request.getRequestDispatcher("error.html").forward(request, response);
+            System.out.println("Error in RegistrationController: SQLException");
+            //    throw new RuntimeException("SQLException in RegistrationController");
         }
-
-        System.out.println("registration after expectuion!!!");
-
- //       request.getRequestDispatcher("profile").forward(request, response);
-
-  //      out.println("after registation");
-        System.out.println("after registation");
-
-    }
-
+     }
 }

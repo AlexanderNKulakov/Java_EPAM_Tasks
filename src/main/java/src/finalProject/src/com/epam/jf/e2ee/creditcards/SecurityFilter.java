@@ -39,6 +39,9 @@ public class SecurityFilter implements Filter {
         String login = null;
         String password = null;
 
+
+      //  System.out.println(httpServletRequest.getParameter("j_login"));
+
         if( session.getAttribute("login") == null) {
 
             login = httpServletRequest.getParameter("j_login");
@@ -62,6 +65,7 @@ public class SecurityFilter implements Filter {
             if( resultSet.next() ) {   // если пароль верный
                 session.setAttribute("login", login);
                 session.setAttribute("password", password);
+
                 if( resultSet.getBoolean("isAdmin") ) { // если админ, то пропускаем и перенаправляем
                     filterChain.doFilter(servletRequest, servletResponse);
                     httpServletRequest.getRequestDispatcher("admin_profile").forward(httpServletRequest, httpServletResponse);
@@ -73,7 +77,6 @@ public class SecurityFilter implements Filter {
                 }
             }
             else {
-                httpServletRequest.getSession().invalidate();  // если во время сессии был изменен пароль
                 httpServletResponse.sendRedirect("login.html");
             }
         }catch (SQLException e) {

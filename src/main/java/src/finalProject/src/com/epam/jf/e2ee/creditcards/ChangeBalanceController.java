@@ -39,7 +39,7 @@ public class ChangeBalanceController  extends HttpServlet {
         String formAmount = request.getParameter("j_amount");
         String formBillOperationType = request.getParameter("j_billoperationtype");
 
-        String query;
+        String query = null;
 
         if( formBillOperationType.equals("deposit")) {
             query = "UPDATE bills SET balance = balance + ? WHERE billNumber = ?";
@@ -49,7 +49,9 @@ public class ChangeBalanceController  extends HttpServlet {
                 query = "UPDATE bills SET balance = balance - ? WHERE billNumber = ?";
             }
             else {
-                throw new RuntimeException("Unknown BillOperationType");
+                request.getRequestDispatcher("error.html").forward(request, response);
+                System.out.println("Error in ChangeBalanceController: Unknown BillOperationType");
+//                throw new RuntimeException("Unknown BillOperationType");
             }
 
         try ( Connection con = DBConnection.getConnection() ) {
@@ -58,15 +60,15 @@ public class ChangeBalanceController  extends HttpServlet {
             preparedStatement.setInt(1,Integer.parseInt(formAmount));
             preparedStatement.setString(2,formBillId);
             int countRow = preparedStatement.executeUpdate();
-    //        System.out.println("countRow = " + countRow);
+            System.out.println("countRow = " + countRow);
 
         }catch (SQLException e) {
-            throw new RuntimeException("SQLException in ChangeBalanceController");
+            request.getRequestDispatcher("error.html").forward(request, response);
+            System.out.println("Error in ChangeBalanceController: SQLException");
+//            throw new RuntimeException("SQLException in ChangeBalanceController");
         }
 
-        //   System.out.println("ChangeBalanceController : forwarding to profile");
         request.getRequestDispatcher("profile").forward(request, response);
-   //     response.sendRedirect("profile");
-
+ //       response.sendRedirect("profile");
     }
 }

@@ -37,7 +37,7 @@ public class LockBillController extends HttpServlet {
         String formBillId = request.getParameter("j_bill_id");
         String formBillOperationType = request.getParameter("j_billoperationtype");
 
-        String query;
+        String query = null;
 
         if( formBillOperationType.equals("lock")) {
 
@@ -49,7 +49,9 @@ public class LockBillController extends HttpServlet {
                 query = "UPDATE bills set isLock = '0' WHERE billNumber = ?";
             }
             else {
-                throw new RuntimeException("Unknown BillOperationType");
+                request.getRequestDispatcher("error.html").forward(request, response);
+                System.out.println("Error in LockBillController: Unknown BillOperationType");
+             //   throw new RuntimeException("Unknown BillOperationType");
             }
 
         try ( Connection con = DBConnection.getConnection() ) {
@@ -61,12 +63,12 @@ public class LockBillController extends HttpServlet {
             System.out.println("countRow = " + countRow);
 
         }catch (SQLException e) {
-        throw new RuntimeException("SQLException in LockBillController");
+            request.getRequestDispatcher("error.html").forward(request, response);
+            System.out.println("Error in LockBillController: SQLException");
+            // throw new RuntimeException("SQLException in LockBillController");
         }
 
-     //   System.out.println("LockBillController : forwarding to profile");
-     //   request.getRequestDispatcher("profile").forward(request, response);
-        response.sendRedirect("profile");
-
+        // так как может выполнять администратор тоже, чтобы пустить через фильтр, нужно использоваться redirect
+        response.sendRedirect("profile");  // так как может выполнять администратор тоже
     }
 }
